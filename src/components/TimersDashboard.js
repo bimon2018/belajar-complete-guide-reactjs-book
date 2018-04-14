@@ -49,6 +49,10 @@ class TimersDashboard extends React.Component {
     this.updateTimer(attrs);
   };
 
+  handleTrashClick = (timerId) => {
+    this.deleteTimer(timerId);
+  };
+
   createTimer = (timer) => {
     const t = Helpers.newTimer(timer);
     this.setState({
@@ -79,6 +83,12 @@ class TimersDashboard extends React.Component {
     });
   };
 
+  deleteTimer = (timerId) => {
+    this.setState({
+      timers: this.state.timers.filter(t => t.id !== timerId),
+    });
+  };
+
 
   componentDidUpdate(){
     console.log(this.state.timers);   // yg bener jika mau cek nilai timer lakukan di sini, ketika state telah diupdate
@@ -95,6 +105,7 @@ class TimersDashboard extends React.Component {
           <EditableTimerList
             timers={this.state.timers}
             onFormSubmit={this.handleEditFormSubmit}
+            onTrashClick={this.handleTrashClick}
           />
           <ToggleableTimerForm 
             onFormSubmit={this.handleCreateFormSubmit}
