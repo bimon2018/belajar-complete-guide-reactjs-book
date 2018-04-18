@@ -7,10 +7,12 @@
 
 import React from 'react';
 import Helpers from '../js/helpers';
+import Client from '../js/client';
 //import uuid from '../js/uuid';
 //import uuid from 'uuid';
 import EditableTimerList from './EditableTimerList';
 import ToggleableTimerForm from './ToggleableTimerForm';
+
 
 //cara penggunaan uuid , ternyata tidak perlu install npm uuid, spt doc di sini : https://www.npmjs.com/package/uuid
 //di docs nya tertulis : npm install uuid (install dulu package nya baru bisa digunakan dgn cara spt di bawah)
@@ -19,6 +21,9 @@ const uuidv4 = require('uuid/v4');
 
 class TimersDashboard extends React.Component {  
   state = {
+    timers: [],
+    /*
+    //HARD CODE DATA JSON / STATIC-NON PERSISTENT
     timers: [
       {
         title: 'Practice squat',
@@ -38,8 +43,8 @@ class TimersDashboard extends React.Component {
         elapsed: 1273998,
         runningSince: null,
       },
-    ],
-  }
+    ], */
+  };
 
   handleCreateFormSubmit = (timer) => {
     this.createTimer(timer);
@@ -131,13 +136,21 @@ class TimersDashboard extends React.Component {
     });  
   };
 
+  loadTimersFromServer = () => {
+    Client.getTimers((serverTimers) => ( 
+      this.setState({timers: serverTimers})      
+    ));    
+  };
+
   componentDidUpdate(){
     console.log(this.state.timers);   // yg bener jika mau cek niisi object timers lakukan di sini, ketika state telah diupdate
   };
 
-  // componentDidMount(){
-  //   console.log(this.state.timers);
-  // };
+  componentDidMount(){
+    this.loadTimersFromServer();
+    setInterval(this.loadTimersFromServer, 5000);
+    console.log('test');
+  };
 
   render() {
     return (

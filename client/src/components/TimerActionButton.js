@@ -1,5 +1,5 @@
 import React from 'react';
-import Helpers from '../js/helpers';
+//import Helpers from '../js/helpers';
 
 class TimerActionButton extends React.Component{
 
@@ -16,7 +16,7 @@ class TimerActionButton extends React.Component{
     }else{
 			return(
 				<div
-					classname='ui bottom attached green basic button'
+					className='ui bottom attached green basic button'
 					onClick={this.props.onStartClick}
 				>
 					Start
