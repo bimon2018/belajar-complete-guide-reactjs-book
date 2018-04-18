@@ -1,0 +1,23 @@
+{
+  "name": "time_tracking_app_server",
+  "version": "1.0.0",
+  "description": "server API utk tutorial time tracking app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": " concurrently \"node server.js\" \"cd client && npm start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bimon2018/belajar-complete-guide-reactjs-book.git"
+  },
+  "author": "bimon 212",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bimon2018/belajar-complete-guide-reactjs-book/issues"
+  },
+  "homepage": "https://github.com/bimon2018/belajar-complete-guide-reactjs-book#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
